@@ -12,7 +12,7 @@ Na Figura, é delineado o fluxo de interação do usuário através das diversas
 
  Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados nas <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a>. -->
 
- ![User Flow](/docs/img/wireframe.jpeg)
+ ![User Flow](/docs/img/telafuncionamento.png)
  Figura 1 - Protótipo do Userflow
 
  ### Tela - HOMEPAGE
@@ -40,28 +40,29 @@ Nessa parte da tela é possível observar dois campos para preenchimento do usu�
 
 Caso o usuário tenha sido cadastrado como um profissional, ele terá seu perfil exposto na aba de "profissionais disponíveis", que seriam filtrados por sua área de atuação por meio dos botões disponíveis.
 
-![Profissionais disponíveis](/docs/img/profissional-page.png)
+![Profissionais disponíveis](/docs/img/profissionais.png)
+![Profissionais disponíveis](/docs/img/profissionais2.png)
  Figura 5 - Protótipo da página de Profissionais Disponíveis.
 
  ### Tela - Meu perfil
 
 Tela do Perfil, onde no menu lateral os usuários podem acessar suas informações pessoais (preenchidas durante o Cadastro), bem como as opções para acessar e editar dados pessoais, aulas agendadas e profissionais disponíveis.
 
-![Meu Perfil](/docs/img/perfil.png)
+![Meu Perfil](/docs/img/MeuPerfil.png)
 Figura 6 - Protótiṕo da página de Meu Perfil.
 
 ### Tela - Aulas
 
 Nessa tela, o usuário tem acesso ao link de aulas gravadas e que estão acontecendo ao vivo por meio de outras plataformas, assim como o profissional consegue comunicar a todos que alguma aula foi postada ou que ele está ao vivo em alguma rede social.
 
-![Aulas](/docs/img/aulas.png)  
+![Aulas](/docs/img/aulas1.png)  
 Figura 7 - Protótiṕo da página de Aulas.
 
 ### Tela - Redes sociais
 
 Tela da rede social, onde conecta profissionais e usuários do sistema, facilitando a interação entre eles. Há possibilidade de  compartilhamento de experiências, dicas de treino e encontro com especialistas para alcançar seus objetivos de forma colaborativa.
 
-![redes-socias](/docs/img/redes-sociais.png)  
+![redes-socias](/docs/img/redesocial.png)  
 Figura 8 - Protótiṕo da página de Redes sociais.
 <!-- Na Figura, é delineado o fluxo de interação do usuário através das diversas telas do sistema. Todas as telas desse percurso são minuciosamente descritas na seção referente ao Protótipo, a qual se encontra adiante.
 <!-- O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo e  muitas vezes sem a necessidade do desenho do design das telas da interface. Isso permite que o design das interações seja bem planejado e gere impacto na qualidade no design do wireframe interativo que será desenvolvido logo em seguida.
