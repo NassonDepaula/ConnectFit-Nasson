@@ -1,33 +1,3 @@
-// Verifica se há dados armazenados no localStorage
-if(localStorage.getItem('profileImg') !== null &&
-   localStorage.getItem('nome-que-quero-ser-chamado') !== null &&
-   localStorage.getItem('nome') !== null &&
-   localStorage.getItem('idade') !== null &&
-   localStorage.getItem('academias') !== null &&
-   localStorage.getItem('localizacao') !== null &&
-   localStorage.getItem('about') !== null) {
-
-    // Carrega os valores do localStorage
-    var profileImg = localStorage.getItem('profileImg');
-    var nomeQueQueroSerChamado = localStorage.getItem('nome-que-quero-ser-chamado');
-    var nome = localStorage.getItem('nome');
-    var idade = localStorage.getItem('idade');
-    var academias = localStorage.getItem('academias');
-    var localizacao = localStorage.getItem('localizacao');
-    var about = localStorage.getItem('about');
-
-    // Atribui os valores aos elementos HTML
-    document.getElementById('user-Photo').src = profileImg;
-    document.getElementById('user-Name').textContent = nomeQueQueroSerChamado;
-    document.getElementById('user-Full-Name').textContent = nome;
-    document.getElementById('user-Age').textContent = idade;
-    document.getElementById('user-Gyms').textContent = academias;
-    document.getElementById('user-Location').textContent = localizacao;
-    document.getElementById('user-Description').textContent = about;
-} else {
-    // Caso não haja dados no localStorage, exibe uma mensagem de erro ou realiza outra ação apropriada
-    console.log('Dados não encontrados no localStorage.');
-}
 function previaImagem() {
   var preview = document.getElementById("previaImagem");
   preview.style.display = "flex";
@@ -50,20 +20,30 @@ function previaImagem() {
 function publicarPostagem() {
   var textoASerPublicado = document.getElementById("textoPulicacao").value;
   var previaImagem = document.getElementById("previaImagem");
+  var upload = document.getElementById("upload").files[0];
 
-  if (!textoASerPublicado || !previaImagem.src) {
-      alert("Por favor preencha todos os campos antes de publicar a mensagem (inclusive upload da imagem a ser publicada)!");
+  if (!textoASerPublicado) {
+      alert("Por favor preencha a mensagem a ser publicada!");
   } else {
       // Obter dados do usuário do localStorage
       var profileImg = localStorage.getItem('profileImg');
       var nomeQueQueroSerChamado = localStorage.getItem('nome-que-quero-ser-chamado');
-
+      var login = localStorage.getItem('login');
+      var conteudoHTMLImg = "";
+      if (upload){
+        conteudoHTMLImg = "<img src='" + previaImagem.src + "' alt='Foto Postada'></img>";  
+      }
       // Criar o elemento de postagem
       var novaDivCriada = document.createElement("div");
       novaDivCriada.classList.add("post");
 
       // Construir a postagem com os dados do usuário
-      novaDivCriada.innerHTML = "<div class='icone-perfil'><img src='" + profileImg + "' alt='" + nomeQueQueroSerChamado + "'>" + nomeQueQueroSerChamado + "</div><p class='texto-post'>" + textoASerPublicado + "</p><img src='" + previaImagem.src + "' alt='Foto Postada'>";
+      novaDivCriada.innerHTML = "<div class='icone-perfil'><img src='" + profileImg + "' alt='" + nomeQueQueroSerChamado + "'>" + nomeQueQueroSerChamado + 
+                                "</div><p class='texto-post'>" + textoASerPublicado + 
+                                "</p><div class='comentarios'></div><div class='novo-comentario'>"+
+                                "<input id='novo-comentario-texto' type='text'><button class='novo-comentario-salvar' type='button' onclick='comentar(event)'>Comentar</button>"+
+                                "</div>"+conteudoHTMLImg+"<div class='curtir'><i class='fa fa-thumbs-o-up' onclick='curtir(event)'></i>"+
+                                "<i class='fa fa-trash' id=remove-post-"+login+" onclick='removerPostagem(event)' aria-hidden='true'></i></div>";
 
       // Inserir a postagem no início do contêiner de postagens
       var postsContainer = document.getElementById("posts");
@@ -73,6 +53,7 @@ function publicarPostagem() {
       document.getElementById("textoPulicacao").value = "";
       previaImagem.src = "";
       previaImagem.style.display = "none";
+      document.getElementById("upload").value = "";
   }
 }
 
@@ -192,6 +173,67 @@ function seguir(e) {
   }
 }
 
+function tratarBotoesRemoverPost() {
+  var login = "";
+  if (localStorage.getItem('login') != null){
+    login = localStorage.getItem('login');
+  }
+  const botoesRemoverPost = document.querySelectorAll(".fa-trash");
+  for (const botao of botoesRemoverPost) {
+    if (botao.id == 'remove-post-'+login){
+      botao.style.display = 'flex';
+    }else{
+      botao.style.display = 'none';
+    }
+  }
+}
+
+function removerPostagem(e) {
+  if (confirm("Você deseja realmente excluir a postagem?")) {
+    var botaoRemoverPost = e.target;
+    var post = botaoRemoverPost.closest('.post');
+    post.remove();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   aplicaListenerBotoesSeguirPorProfissionais('posts');
+
+  tratarBotoesRemoverPost();
+
+  // Verifica se há dados armazenados no localStorage
+  if(localStorage.getItem('profileImg') !== null &&
+     localStorage.getItem('login') !== null &&
+     localStorage.getItem('nome') !== null &&
+     localStorage.getItem('idade') !== null &&
+     localStorage.getItem('academias') !== null &&
+     localStorage.getItem('localizacao') !== null) {
+      
+      // Carrega os valores do localStorage
+
+      var profileImg = localStorage.getItem('profileImg');
+      var login = localStorage.getItem('login');
+      var nome = localStorage.getItem('nome');
+      var idade = localStorage.getItem('idade');
+      var academias = localStorage.getItem('academias');
+      var localizacao = localStorage.getItem('localizacao');
+      var nomeQueQueroSerChamado = localStorage.getItem('nome-que-quero-ser-chamado');
+      
+      // Atribui os valores aos elementos HTML
+      document.getElementById('user-Photo').src = profileImg;
+      document.getElementById('user-Name').textContent = login;
+      document.getElementById('user-Full-Name').textContent = nome;
+      document.getElementById('user-Age').textContent = idade;
+      document.getElementById('user-Gyms').textContent = academias;
+      document.getElementById('user-Location').textContent = localizacao;
+      document.getElementById('user-Alias').textContent = nomeQueQueroSerChamado;
+      
+  } else {
+
+      // Caso não haja dados no localStorage, exibe uma mensagem de erro ou realiza outra ação apropriada
+      console.log('Dados não encontrados no localStorage.');
+  }
 });
+
+
+  

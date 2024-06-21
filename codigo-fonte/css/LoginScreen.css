@@ -5,7 +5,7 @@
     }
 
 body {
-    background-image: url(/codigo-fonte/img/background-login.jpeg);
+    background-image: url('../img/background-login.jpeg');
     background-size:cover ;
     background-position: unset;
     background-repeat: no-repeat;
@@ -146,7 +146,7 @@ body {
     padding: 8px 18px 8px 18px;
     border-radius: 20px;
     width: auto;
-    transform: translateY(-276%) translateX(-300%);
+    transform: translateY(-276%) translateX(-325%);
 
 }
 
